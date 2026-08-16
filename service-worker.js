@@ -1,11 +1,15 @@
 "use strict";
 
-const CACHE_NAME = "subbuteo-modern-scoreboard-v2";
+const CACHE_NAME = "subbuteo-modern-scoreboard-v3";
 const APP_FILES = [
   "./",
   "./index.html",
-  "./scoreboard-modern-v2.css",
-  "./scoreboard-modern-v2.js",
+  "./scoreboard-modern-v3.css",
+  "./scoreboard-modern-v3.js",
+  "./BarlowSemiCondensed-Regular.woff",
+  "./BarlowSemiCondensed-SemiBold.woff",
+  "./BarlowSemiCondensed-Bold.woff",
+  "./OFL.txt",
   "./manifest.json",
   "./icon-192.png",
   "./icon-512.png",
