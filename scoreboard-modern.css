@@ -1,0 +1,383 @@
+:root {
+  color-scheme: dark;
+  --white: #f7f7f7;
+  --grey: #777777;
+  --line: #f7f7f7;
+  --focus: #75bfff;
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+  background: #000000;
+}
+
+body,
+button,
+input {
+  font-family: Bahnschrift, "Aptos Display", "Arial Narrow", Arial, sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow: hidden;
+  color: var(--white);
+  touch-action: manipulation;
+}
+
+button,
+input {
+  color: inherit;
+}
+
+input {
+  min-width: 0;
+  border: 0;
+  border-bottom: 1px solid transparent;
+  border-radius: 0;
+  background: transparent;
+  text-align: center;
+}
+
+input:hover {
+  border-bottom-color: #555555;
+}
+
+button:focus-visible,
+input:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+}
+
+button {
+  min-width: 0;
+  min-height: 3.35rem;
+  padding: 0.45rem 0.7rem;
+  border: 3px solid var(--line);
+  border-radius: 0.55rem;
+  background: #000000;
+  color: var(--white);
+  font-size: clamp(0.62rem, 1vw, 1rem);
+  font-weight: 600;
+  letter-spacing: 0.025em;
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+}
+
+button:active,
+button[aria-pressed="true"] {
+  background: var(--white);
+  color: #000000;
+}
+
+button:disabled {
+  opacity: 0.38;
+  cursor: default;
+}
+
+.scoreboard {
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: grid;
+  grid-template-rows: auto auto minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: clamp(0.25rem, 1.4vh, 1.1rem);
+  padding: max(0.75rem, env(safe-area-inset-top)) max(1rem, env(safe-area-inset-right)) max(0.7rem, env(safe-area-inset-bottom)) max(1rem, env(safe-area-inset-left));
+}
+
+.scoreboard-header {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.league-title {
+  width: min(84vw, 62rem);
+  padding: 0;
+  font-size: clamp(2.2rem, 8vh, 6.5rem);
+  font-weight: 350;
+  letter-spacing: 0.015em;
+}
+
+.clock {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  translate: 0 -50%;
+  color: #5f5f5f;
+  font-size: clamp(0.65rem, 1.6vh, 1rem);
+  font-variant-numeric: tabular-nums;
+}
+
+.match-time {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  gap: clamp(0.8rem, 2vw, 2.2rem);
+  white-space: nowrap;
+}
+
+.match-time-label {
+  font-size: clamp(1.35rem, 4.8vh, 3.9rem);
+  font-weight: 400;
+}
+
+.time-input {
+  display: inline-flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.08em;
+  font-size: clamp(2rem, 7.5vh, 5.8rem);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.time-input input {
+  padding: 0;
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+#timerMinutes {
+  width: 3.15ch;
+  text-align: right;
+}
+
+#timerSeconds {
+  width: 2.15ch;
+  text-align: left;
+}
+
+.match-board {
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(7rem, 1fr) auto minmax(7rem, 1fr);
+  grid-template-areas: "home score away";
+  align-items: center;
+  gap: clamp(0.75rem, 3vw, 4rem);
+}
+
+.team-name {
+  width: 100%;
+  padding: 0.2rem;
+  font-size: clamp(1.45rem, 5.5vh, 4.5rem);
+  font-weight: 450;
+}
+
+.team-home {
+  grid-area: home;
+}
+
+.team-away {
+  grid-area: away;
+}
+
+.score-line {
+  grid-area: score;
+  display: grid;
+  grid-template-columns: minmax(1ch, auto) 0.5ch minmax(1ch, auto);
+  align-items: center;
+  justify-items: center;
+  gap: clamp(0.6rem, 2vw, 2.2rem);
+  font-variant-numeric: tabular-nums;
+}
+
+.score {
+  display: block;
+  min-width: 1ch;
+  font-size: clamp(8rem, 31vh, 23rem);
+  font-weight: 600;
+  line-height: 0.78;
+  text-align: center;
+}
+
+.score-separator {
+  align-self: center;
+  font-size: clamp(4rem, 14vh, 10rem);
+  font-weight: 600;
+  line-height: 1;
+}
+
+.brand {
+  margin: 0;
+  color: var(--grey);
+  font-size: clamp(1rem, 3.1vh, 2.55rem);
+  font-stretch: condensed;
+  font-weight: 700;
+  letter-spacing: -0.055em;
+  text-align: center;
+}
+
+.controls {
+  width: min(100%, 88rem);
+  justify-self: center;
+  display: grid;
+  grid-template-columns: repeat(10, minmax(0, 1fr));
+  gap: clamp(0.25rem, 0.7vw, 0.75rem);
+}
+
+.install-button {
+  border-color: var(--focus);
+}
+
+.rotate-hint,
+.toast {
+  position: fixed;
+  z-index: 10;
+  left: 50%;
+  translate: -50% 0;
+  margin: 0;
+  padding: 0.7rem 1rem;
+  border: 1px solid #555555;
+  border-radius: 0.5rem;
+  background: rgba(10, 10, 10, 0.96);
+  color: var(--white);
+  text-align: center;
+  font-family: system-ui, sans-serif;
+  font-size: 0.9rem;
+}
+
+.rotate-hint {
+  display: none;
+  bottom: max(0.75rem, env(safe-area-inset-bottom));
+}
+
+.toast {
+  top: max(0.75rem, env(safe-area-inset-top));
+  width: min(90vw, 34rem);
+}
+
+[hidden] {
+  display: none !important;
+}
+
+noscript {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  display: grid;
+  place-items: center;
+  padding: 2rem;
+  background: #000000;
+  color: var(--white);
+  font-family: system-ui, sans-serif;
+}
+
+@media (max-height: 500px) and (orientation: landscape) {
+  .scoreboard {
+    gap: 0.18rem;
+    padding-top: max(0.35rem, env(safe-area-inset-top));
+    padding-bottom: max(0.35rem, env(safe-area-inset-bottom));
+  }
+
+  .league-title {
+    font-size: clamp(1.6rem, 7vh, 2.5rem);
+  }
+
+  .match-time-label {
+    font-size: clamp(1rem, 4.5vh, 1.5rem);
+  }
+
+  .time-input {
+    font-size: clamp(1.45rem, 6.5vh, 2.2rem);
+  }
+
+  .team-name {
+    font-size: clamp(1.05rem, 5vh, 1.8rem);
+  }
+
+  .score {
+    font-size: clamp(5rem, 29vh, 9rem);
+  }
+
+  .score-separator {
+    font-size: clamp(2.5rem, 13vh, 4.5rem);
+  }
+
+  .brand {
+    font-size: clamp(0.8rem, 2.9vh, 1.15rem);
+  }
+
+  button {
+    min-height: 2.65rem;
+    padding: 0.25rem 0.2rem;
+    border-width: 2px;
+    border-radius: 0.4rem;
+    font-size: clamp(0.48rem, 1.35vw, 0.72rem);
+  }
+}
+
+@media (orientation: portrait) {
+  body {
+    overflow-y: auto;
+  }
+
+  .scoreboard {
+    min-height: 100dvh;
+    grid-template-rows: auto auto minmax(18rem, 1fr) auto auto;
+    padding-bottom: 4.7rem;
+  }
+
+  .clock {
+    display: none;
+  }
+
+  .league-title {
+    width: 96vw;
+    font-size: clamp(2rem, 10vw, 4rem);
+  }
+
+  .match-time-label {
+    font-size: clamp(1.2rem, 5vw, 2rem);
+  }
+
+  .time-input {
+    font-size: clamp(1.8rem, 8vw, 3.2rem);
+  }
+
+  .match-board {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-areas:
+      "home away"
+      "score score";
+    align-content: center;
+    gap: 0.8rem 0.5rem;
+  }
+
+  .team-name {
+    font-size: clamp(1.1rem, 5.6vw, 2.2rem);
+  }
+
+  .score {
+    font-size: clamp(6rem, 31vw, 11rem);
+  }
+
+  .score-separator {
+    font-size: clamp(3rem, 14vw, 5rem);
+  }
+
+  .controls {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .rotate-hint {
+    display: block;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    scroll-behavior: auto !important;
+  }
+}

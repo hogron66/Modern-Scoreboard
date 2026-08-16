@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#000000">
+  <meta name="color-scheme" content="dark">
+  <meta name="description" content="A modern installable Subbuteo scoreboard that works offline.">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Modern Scoreboard">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; media-src 'self'; worker-src 'self'; manifest-src 'self'; base-uri 'self'; form-action 'none'">
+  <title>Subbuteo Modern Scoreboard</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icon-192.png" sizes="192x192" type="image/png">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <link rel="stylesheet" href="scoreboard-modern-v2.css">
+</head>
+<body>
+  <main class="scoreboard" aria-label="Modern Subbuteo scoreboard">
+    <header class="scoreboard-header">
+      <input id="leagueTitle" class="league-title" type="text" value="Subbuteo League" maxlength="30"
+        aria-label="League name" autocomplete="off" spellcheck="false">
+      <time id="clock" class="clock" aria-label="Current time">00:00:00</time>
+    </header>
+
+    <section class="match-time" aria-label="Match timer">
+      <span class="match-time-label">Match Time</span>
+      <div class="time-input" aria-label="Match time">
+        <input id="timerMinutes" type="text" value="45" inputmode="numeric" pattern="[0-9]*" maxlength="3"
+          aria-label="Minutes" autocomplete="off" spellcheck="false">
+        <span aria-hidden="true">:</span>
+        <input id="timerSeconds" type="text" value="00" inputmode="numeric" pattern="[0-9]*" maxlength="2"
+          aria-label="Seconds" autocomplete="off" spellcheck="false">
+      </div>
+    </section>
+
+    <section class="match-board" aria-label="Teams and score">
+      <input id="teamAName" class="team-name team-home" type="text" value="Home team" maxlength="15"
+        aria-label="Home team name" autocomplete="off" spellcheck="false">
+
+      <div class="score-line" aria-label="Current score">
+        <output id="scoreA" class="score" aria-live="polite" aria-label="Home team score">0</output>
+        <span class="score-separator" aria-hidden="true">-</span>
+        <output id="scoreB" class="score" aria-live="polite" aria-label="Visiting team score">0</output>
+      </div>
+
+      <input id="teamBName" class="team-name team-away" type="text" value="Visiting team" maxlength="15"
+        aria-label="Visiting team name" autocomplete="off" spellcheck="false">
+    </section>
+
+    <p class="brand">SUBBUTEOSTADIUM.COM</p>
+
+    <nav class="controls" aria-label="Score and match controls">
+      <div class="score-control-group home-score-controls" aria-label="Home score controls">
+        <span class="control-team-label">HOME</span>
+        <div class="score-button-pair">
+          <button type="button" data-score-team="A" data-score-change="-1" aria-label="Decrease home score">&minus;</button>
+          <button type="button" data-score-team="A" data-score-change="1" aria-label="Increase home score">+</button>
+        </div>
+      </div>
+
+      <div class="match-controls">
+        <button id="startButton" type="button">START</button>
+        <button id="pauseButton" type="button">PAUSE</button>
+        <button id="resetTimerButton" type="button">RESET TIME</button>
+        <button id="colorButton" type="button" aria-label="Change background color">COLOR</button>
+        <button id="crowdButton" type="button" aria-pressed="false">Crowd off</button>
+        <button id="resetScoresButton" type="button">RESET SCORE</button>
+        <button id="fullscreenButton" type="button">FULLSCREEN</button>
+        <button id="installButton" class="install-button" type="button" hidden>INSTALL APP</button>
+      </div>
+
+      <div class="score-control-group away-score-controls" aria-label="Visiting score controls">
+        <span class="control-team-label">AWAY</span>
+        <div class="score-button-pair">
+          <button type="button" data-score-team="B" data-score-change="-1" aria-label="Decrease visiting score">&minus;</button>
+          <button type="button" data-score-team="B" data-score-change="1" aria-label="Increase visiting score">+</button>
+        </div>
+      </div>
+    </nav>
+  </main>
+
+  <p class="rotate-hint" role="status">Rotate your device to landscape for the scoreboard layout.</p>
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+  <audio id="whistleSound" src="referee-blowing-whistle-sound-effect.mp3" preload="auto"></audio>
+  <audio id="cheerSound" src="Big-crowd-cheering.mp3" preload="auto"></audio>
+  <audio id="crowdLoopSound" src="freesound_community-soccer-stadium-10-6709.mp3" preload="auto" loop></audio>
+  <noscript>This scoreboard needs JavaScript enabled.</noscript>
+  <script src="scoreboard-modern-v2.js" defer></script>
+</body>
+</html>
